@@ -1,14 +1,15 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import CustomerProducts from '../pages/CustomerProducts';
 
-function Routes() {
+function Router() {
   return (
     <main>
-      <Switch>
-        <Route exact path="/customer/products" component={ CustomerProducts } />
-      </Switch>
+      <Routes>
+        <Route exact path="/customer/products" element={ <CustomerProducts /> } />
+      </Routes>
     </main>
   );
 }
 
-export default Routes;
+export default Router;
