@@ -52,13 +52,13 @@ export default function Login() {
   return (
     <div>
       <h2>Acesse a plataforma</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ handleSubmit }>
         <label htmlFor="email">
           E-mail
           <input
             name="email"
             type="text"
-            onChange={handleInput}
+            onChange={ handleInput }
             data-testid="common_login__input-email"
           />
         </label>
@@ -67,7 +67,7 @@ export default function Login() {
           <input
             name="password"
             type="password"
-            onChange={handleInput}
+            onChange={ handleInput }
             data-testid="common_login__input-password"
           />
         </label>
@@ -75,14 +75,14 @@ export default function Login() {
           type="submit"
           name="login"
           data-testid="common_login__button-login"
-          disabled={!validFields()}
+          disabled={ !validFields() }
         >
           Entrar
         </button>
         <button
           type="submit"
           data-testid="common_login__button-register"
-          onClick={redirectToRegister}
+          onClick={ redirectToRegister }
         >
           Cadastro
         </button>
