@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonCart from '../components/ButtonCart';
 import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 
@@ -7,6 +8,7 @@ function CustomerProducts() {
     <div>
       <Navbar />
       <ProductCard />
+      <ButtonCart />
     </div>
   );
 }
