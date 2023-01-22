@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import rockGlass from '../images/rockGlass.svg';
 
 const initialState = { count: 0 };
 
@@ -22,7 +23,7 @@ function ProductCard(id) {
       <p data-testid={ `customer_products__element-card-price-${id}` }>Price</p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src="../images/rockGlass.svg"
+        src={ rockGlass }
         alt="Bebida"
       />
       <div>
@@ -39,6 +40,7 @@ function ProductCard(id) {
           name="inputCardQuantity"
           id="inputCardQuantity"
           value={ state.count }
+          onChange={ ({ target: { value } }) => value }
         />
         <button
           data-testid={ `customer_products__button-card-add-item-${id}` }
