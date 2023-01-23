@@ -1,5 +1,6 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useContext } from 'react';
 import PropTypes from 'prop-types';
+import CartContext from '../context/CartContext';
 
 const initialState = { count: 0 };
 
@@ -17,14 +18,29 @@ function countReducer(state, action) {
 
 function ProductCard(props) {
   const { id, name, price, urlImage } = props;
-  console.log(urlImage);
   const [state, dispatch] = useReducer(countReducer, initialState);
+  const context = useContext(CartContext);
+  const { cart, setCart } = context;
+
+  const addToCart = (idx) => {
+    const productCart = [...cart];
+    const productItem = productCart.find((product) => product.id === idx);
+    const unitPrice = parseFloat(price);
+    if (!productItem) {
+      productCart.push({ id: idx, qty: 1, value: parseFloat(price) });
+    } else {
+      productItem.qty += 1;
+      productItem.value += unitPrice;
+    }
+    setCart(productCart);
+    console.log(productCart);
+    return productCart;
+  };
+
   return (
     <section>
       <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
-      <p
-        data-testid={ `customer_products__element-card-price-${id}` }
-      >
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
         {`R$${price}`}
       </p>
       <img
@@ -52,10 +68,23 @@ function ProductCard(props) {
         <button
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
-          onClick={ () => dispatch({ type: 'increment' }) }
+          value={ id }
+          onClick={ ({ currentTarget }) => {
+            dispatch({ type: 'increment' });
+            addToCart(currentTarget.value);
+          } }
         >
           +
         </button>
+
+        {/* <button
+          type="button"
+          value={ id }
+          onClick={ ({ currentTarget }) => addToCart(currentTarget.value) }
+        >
+          Teste
+        </button> */}
+
       </div>
     </section>
   );
