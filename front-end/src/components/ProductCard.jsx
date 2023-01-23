@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import rockGlass from '../images/rockGlass.svg';
+import PropTypes from 'prop-types';
 
 const initialState = { count: 0 };
 
@@ -15,15 +15,22 @@ function countReducer(state, action) {
   }
 }
 
-function ProductCard(id) {
+function ProductCard(props) {
+  const { id, name, price, urlImage } = props;
+  console.log(urlImage);
   const [state, dispatch] = useReducer(countReducer, initialState);
   return (
     <section>
-      <p data-testid={ `customer_products__element-card-title-${id}` }>Name</p>
-      <p data-testid={ `customer_products__element-card-price-${id}` }>Price</p>
+      <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
+      <p
+        data-testid={ `customer_products__element-card-price-${id}` }
+      >
+        {`R$${price}`}
+      </p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ rockGlass }
+        src={ urlImage }
+        width="250px"
         alt="Bebida"
       />
       <div>
@@ -53,5 +60,9 @@ function ProductCard(id) {
     </section>
   );
 }
+
+ProductCard.propTypes = {
+  id: PropTypes.string,
+}.isRequired;
 
 export default ProductCard;
