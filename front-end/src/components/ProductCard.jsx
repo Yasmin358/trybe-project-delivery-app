@@ -1,32 +1,21 @@
 import React, { useReducer, useContext } from 'react';
 import PropTypes from 'prop-types';
 import CartContext from '../context/CartContext';
-
-const initialState = { count: 0 };
-
-function countReducer(state, action) {
-  switch (action.type) {
-  case 'increment':
-    return { count: state.count + 1 };
-  case 'decrement':
-    if (state.count === 0) return { count: 0 };
-    return { count: state.count - 1 };
-  default:
-    throw new Error('Unknown action');
-  }
-}
+import countReducer from '../utils/countReducer';
 
 function ProductCard(props) {
   const { id, name, price, urlImage } = props;
+  const initialState = { count: 0 };
   const [state, dispatch] = useReducer(countReducer, initialState);
   const { cart, setCart } = useContext(CartContext);
   const productCart = [...cart];
+  const productItem = productCart.find((product) => product.id === id);
+  const productCartRemovedItem = productCart.filter((product) => product.id !== id);
+  const unitPrice = parseFloat(price);
 
-  const addToCart = (idx) => {
-    const productItem = productCart.find((product) => product.id === idx);
-    const unitPrice = parseFloat(price);
+  const addToCart = () => {
     if (!productItem) {
-      productCart.push({ id: idx, name, qty: 1, value: parseFloat(price) });
+      productCart.push({ id, name, qty: 1, value: parseFloat(price) });
     } else {
       productItem.qty += 1;
       productItem.value += unitPrice;
@@ -36,12 +25,8 @@ function ProductCard(props) {
     return productCart;
   };
 
-  const removeFromCart = (idx) => {
-    const productItem = productCart.find((product) => product.id === idx);
-    const unitPrice = parseFloat(price);
-
+  const removeFromCart = () => {
     if (productItem && productItem.qty === 1) {
-      const productCartRemovedItem = productCart.filter((product) => product.id !== idx);
       setCart(productCartRemovedItem);
       console.log(productCartRemovedItem);
       return productCartRemovedItem;
@@ -72,10 +57,9 @@ function ProductCard(props) {
         <button
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
-          value={ id }
-          onClick={ ({ currentTarget }) => {
+          onClick={ () => {
             dispatch({ type: 'decrement' });
-            removeFromCart(currentTarget.value);
+            removeFromCart();
           } }
         >
           -
@@ -91,10 +75,9 @@ function ProductCard(props) {
         <button
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
-          value={ id }
-          onClick={ ({ currentTarget }) => {
+          onClick={ () => {
             dispatch({ type: 'increment' });
-            addToCart(currentTarget.value);
+            addToCart();
           } }
         >
           +
