@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import UserContext from './UserContext';
 
 function UserProvider({ children }) {
-  const initialState = 'John Doe';
+  const userKey = localStorage.getItem('user');
+  const parseUserKey = JSON.parse(userKey);
+  const userName = parseUserKey.name;
+  const initialState = userName;
 
   const [user, setUser] = useState(initialState);
 
