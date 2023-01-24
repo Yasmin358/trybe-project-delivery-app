@@ -4,7 +4,7 @@ import CartContext from '../context/CartContext';
 function ButtonCart() {
   const { cart } = useContext(CartContext);
   const productCart = [...cart];
-  // console.log(productCart);
+
   const totalPrice = () => {
     const productCartSum = productCart.reduce(
       (acc, curr) => Number((acc + curr.value).toFixed(2)),
@@ -12,6 +12,7 @@ function ButtonCart() {
     );
     return productCartSum;
   };
+
   return (
     <div>
       <button data-testid="customer_products__button-cart" type="button">

@@ -19,15 +19,14 @@ function countReducer(state, action) {
 function ProductCard(props) {
   const { id, name, price, urlImage } = props;
   const [state, dispatch] = useReducer(countReducer, initialState);
-  const context = useContext(CartContext);
-  const { cart, setCart } = context;
+  const { cart, setCart } = useContext(CartContext);
+  const productCart = [...cart];
 
   const addToCart = (idx) => {
-    const productCart = [...cart];
     const productItem = productCart.find((product) => product.id === idx);
     const unitPrice = parseFloat(price);
     if (!productItem) {
-      productCart.push({ id: idx, qty: 1, value: parseFloat(price) });
+      productCart.push({ id: idx, name, qty: 1, value: parseFloat(price) });
     } else {
       productItem.qty += 1;
       productItem.value += unitPrice;
@@ -35,6 +34,26 @@ function ProductCard(props) {
     setCart(productCart);
     console.log(productCart);
     return productCart;
+  };
+
+  const removeFromCart = (idx) => {
+    const productItem = productCart.find((product) => product.id === idx);
+    const unitPrice = parseFloat(price);
+
+    if (productItem && productItem.qty === 1) {
+      const productCartRemovedItem = productCart.filter((product) => product.id !== idx);
+      setCart(productCartRemovedItem);
+      console.log(productCartRemovedItem);
+      return productCartRemovedItem;
+    }
+
+    if (productItem && productItem.qty > 0) {
+      productItem.qty -= 1;
+      productItem.value -= unitPrice;
+      setCart(productCart);
+      console.log(productCart);
+      return productCart;
+    }
   };
 
   return (
@@ -53,7 +72,11 @@ function ProductCard(props) {
         <button
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           type="button"
-          onClick={ () => dispatch({ type: 'decrement' }) }
+          value={ id }
+          onClick={ ({ currentTarget }) => {
+            dispatch({ type: 'decrement' });
+            removeFromCart(currentTarget.value);
+          } }
         >
           -
         </button>
@@ -76,15 +99,6 @@ function ProductCard(props) {
         >
           +
         </button>
-
-        {/* <button
-          type="button"
-          value={ id }
-          onClick={ ({ currentTarget }) => addToCart(currentTarget.value) }
-        >
-          Teste
-        </button> */}
-
       </div>
     </section>
   );
