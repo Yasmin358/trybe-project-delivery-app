@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import CartContext from '../context/CartContext';
 
 function ButtonCart() {
@@ -15,13 +16,15 @@ function ButtonCart() {
 
   return (
     <div>
-      <button data-testid="customer_products__button-cart" type="button">
-        <p data-testid="customer_products__checkout-bottom-value">
-          {/* {`Ver carrinho: R$${totalPrice()}`} */}
-          {/* Ver carrinho: R$ */}
-          { totalPrice() }
-        </p>
-      </button>
+      <Link to="/customer/checkout">
+        <button data-testid="customer_products__button-cart" type="button">
+          <p data-testid="customer_products__checkout-bottom-value">
+            {/* {`Ver carrinho: R$${totalPrice()}`} */}
+            {/* Ver carrinho: R$ */}
+            { totalPrice() }
+          </p>
+        </button>
+      </Link>
     </div>
   );
 }
