@@ -23,9 +23,12 @@ const login = async ({ email, password }) => {
     password: hashPassword,
     role: result.role,
   });
-  const { name, role, id } = result;
+  // const { name, role, id } = result;
 
-  return { id, name, email, role, token };
+  // return { id, name, email, role, token };
+  const { name, role } = result;
+
+  return { name, email, role, token };
 };
 
 const register = async ({ name, email, password, role }) => {

@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 
 function Navbar() {
-  const context = useContext(UserContext);
-  const { user } = context;
+  const { user } = useContext(UserContext);
+  const userName = [...user];
+  const logOut = () => localStorage.removeItem('user');
+
   return (
     <nav>
       <ul>
@@ -14,10 +17,10 @@ function Navbar() {
           Meus Pedidos
         </li>
         <li data-testid="customer_products__element-navbar-user-full-name">
-          { user }
+          { userName }
         </li>
         <li data-testid="customer_products__element-navbar-link-logout">
-          Sair
+          <Link onClick={ () => logOut() } to="/login">Sair</Link>
         </li>
       </ul>
     </nav>

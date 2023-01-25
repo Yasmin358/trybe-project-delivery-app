@@ -45,7 +45,8 @@ function ProductCard(props) {
     <section>
       <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
       <p data-testid={ `customer_products__element-card-price-${id}` }>
-        {`R$${price}`}
+        {/* {`R$${price}`} */}
+        { price.toString().replace('.', ',') }
       </p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
