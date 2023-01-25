@@ -1,6 +1,6 @@
 import React from 'react';
-import CartTable from '../components/CartTable';
-// import '../styles/checkout.css';
+import CartTable from '../../components/CartTable/CartTable';
+import './checkout.css';
 // import Navbar from '../components/Navbar.jsx';
 
 function Checkout() {
@@ -15,15 +15,13 @@ function Checkout() {
       <div className="detailsContainer">
         <h2>Detalhes e Endereço para Entrega</h2>
         <form>
-          <label htmlFor="selectSeller">
+          { /* <label htmlFor="selectSeller">
             P. Vendedora Responsável
             <select
               data-testid="customer_checkout__select-seller"
               id="selectSeller"
-            >
-              {options}
-            </select>
-          </label>
+            />
+          </label> */ }
           <label htmlFor="inputAddress">
             Endereço
             <input
@@ -40,6 +38,9 @@ function Checkout() {
               id="inputAddressNumber"
             />
           </label>
+          <button type="button">
+            Finalizar Pedido
+          </button>
         </form>
       </div>
     </section>

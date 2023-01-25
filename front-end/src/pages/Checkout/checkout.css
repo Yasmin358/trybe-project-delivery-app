@@ -1,0 +1,6 @@
+.cartContainer, .detailsContainer {
+  box-shadow: 3px 3px 4px 0 grey;
+  height: auto;
+  margin-top: 10px;
+  padding: 10px 0;
+}
