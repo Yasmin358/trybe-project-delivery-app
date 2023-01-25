@@ -16,15 +16,22 @@ function ButtonCart() {
 
   return (
     <div>
-      <Link to="/customer/checkout">
-        <button data-testid="customer_products__button-cart" type="button">
-          <p data-testid="customer_products__checkout-bottom-value">
-            {/* {`Ver carrinho: R$${totalPrice()}`} */}
-            {/* Ver carrinho: R$ */}
-            { totalPrice() }
-          </p>
-        </button>
-      </Link>
+      <button
+        data-testid="customer_products__button-cart"
+        type="button"
+        disabled
+      >
+        <Link
+          data-testid="customer_products__checkout-bottom-value"
+          to="/customer/checkout"
+        >
+          {/* <p data-testid="customer_products__checkout-bottom-value"> */}
+          {/* {`Ver carrinho: R$${totalPrice()}`} */}
+          {/* Ver carrinho: R$ */}
+          {totalPrice()}
+          {/* </p> */}
+        </Link>
+      </button>
     </div>
   );
 }
