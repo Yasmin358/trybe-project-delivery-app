@@ -28,26 +28,30 @@ const login = async ({ email, password }) => {
   return { id, name, email, role, token };
 };
 
-const register = async ({ email, password, name }) => {
-  const user = await User.findOne({
+const register = async ({ name, email, password, role }) => {
+  const userExists = await User.findOne({
     where: {
       [Op.or]: [
-        { email },
         { name },
+        { email },
       ],
     },
   });
 
-  if (user) throw new CustomError(409, 'User already exists');
+  if (userExists) throw new CustomError(409, 'Name or email already registered');
 
   const hashPassword = md5(password);
 
-  const newUser = await User.create({ name, email, password: hashPassword, role: 'customer' });
+  const newUser = await User.create({
+    name,
+    email,
+    password: hashPassword,
+    role,
+  });
 
-  const token = jwt.create(newUser);
-  const { role, id } = newUser;
+  const token = jwt.create({ id: newUser.id, email, role });
 
-  return { id, name, email, role, token };
+  return { name, email, role, token };
 };
 
 module.exports = {
