@@ -6,7 +6,7 @@ function UserProvider({ children }) {
   const getUser = () => {
     const userKey = localStorage.getItem('user');
     if (!userKey) {
-      const initialState = 'John Doe';
+      const initialState = 'Cliente Zé Birita';
       return initialState;
     }
     const parseUserKey = JSON.parse(userKey);
@@ -14,6 +14,13 @@ function UserProvider({ children }) {
     const initialState = userName;
     return initialState;
   };
+
+  // const userKey = localStorage.getItem('user');
+  // console.log(userKey);
+  // const parseUserKey = JSON.parse(userKey);
+  // const userName = parseUserKey.name;
+  // console.log(userName);
+  // const initialState = userName;
 
   const [user, setUser] = useState(getUser);
 

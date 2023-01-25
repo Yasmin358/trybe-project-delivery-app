@@ -13,7 +13,7 @@ import stellaArtois275ml from '../images/stella_artois_275ml.jpg';
 const drinksMock = [
   {
     id: 1,
-    name: 'Skol Lata 350ml',
+    name: 'Skol Lata 250ml',
     price: '2.20',
     urlImage: skolLata350ml,
   },

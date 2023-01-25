@@ -10,14 +10,16 @@ function ButtonCart() {
       (acc, curr) => Number((acc + curr.value).toFixed(2)),
       0,
     );
-    return productCartSum;
+    return productCartSum.toFixed(2).toString().replace('.', ',');
   };
 
   return (
     <div>
       <button data-testid="customer_products__button-cart" type="button">
         <p data-testid="customer_products__checkout-bottom-value">
-          {`Ver carrinho: R$${totalPrice()}`}
+          {/* {`Ver carrinho: R$${totalPrice()}`} */}
+          {/* Ver carrinho: R$ */}
+          { totalPrice() }
         </p>
       </button>
     </div>
