@@ -1,5 +1,5 @@
 const models = require('../database/models');
-const { validate } = require('../auth/jwt')
+const { validate } = require('../auth/jwt');
 
 const { Sale } = models;
 
