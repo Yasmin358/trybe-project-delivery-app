@@ -3,6 +3,9 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import SellerOrders from '../pages/SellerOrders';
+import Admin from '../pages/Admin';
+import CustomerProducts from '../pages/CustomerProducts';
+import CustomerCheckout from '../pages/CustomerCheckout';
 
 function Router() {
   return (
@@ -11,8 +14,10 @@ function Router() {
         <Route exact path="/" element={ <Navigate to="/login" /> } />
         <Route exact path="/login" element={ <Login /> } />
         <Route exact path="/register" element={ <Register /> } />
-        <Route exact path="/customer/products" element={ <p>teste</p> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
+        <Route exact path="/customer/products" element={ <CustomerProducts /> } />
+        <Route exact path="/customer/checkout" element={ <CustomerCheckout /> } />
+        <Route exact path="/admin/manage" element={ <Admin /> } />
       </Routes>
     </main>
   );

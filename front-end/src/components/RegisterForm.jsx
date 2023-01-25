@@ -22,8 +22,9 @@ export default function RegisterForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const userData = { ...input, role: 'customer' };
 
-    axios.post('http://localhost:3001/register/', input)
+    axios.post('http://localhost:3001/register/', userData)
       .then((response) => response.data)
       .then((data) => {
         const stringfyData = JSON.stringify(data);
