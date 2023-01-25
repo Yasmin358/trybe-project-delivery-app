@@ -10,4 +10,7 @@ userRoute.post('/login',
 userRoute.post('/register',
   rescue((req, res, _next) => userController.register(req, res)));
 
+userRoute.post('/admin/register', rescue((req, res, _next) =>
+  userController.admin(req, res)));
+
 module.exports = userRoute;
