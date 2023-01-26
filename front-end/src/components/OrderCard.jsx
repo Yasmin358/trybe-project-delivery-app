@@ -1,9 +1,9 @@
 import React from 'react';
 import { string, shape, number } from 'prop-types';
 
-function Order({ order, status, date, price, address, delivery }) {
+function OrderCard({ order, status, date, price, address, delivery }) {
   return (
-    <div>
+    <>
       <div>
         <p data-testid={ `${delivery}-${order.id}` }>{ order.deliveryNumber }</p>
       </div>
@@ -15,11 +15,11 @@ function Order({ order, status, date, price, address, delivery }) {
           <p data-testid={ `${address}-${order.id}` }>{ order.deliveryAddress }</p>
         )
       }
-    </div>
+    </>
   );
 }
 
-Order.propTypes = {
+OrderCard.propTypes = {
   status: string.isRequired,
   date: string.isRequired,
   price: string.isRequired,
@@ -35,8 +35,8 @@ Order.propTypes = {
   }).isRequired,
 };
 
-Order.defaultProps = {
+OrderCard.defaultProps = {
   address: '',
 };
 
-export default Order;
+export default OrderCard;

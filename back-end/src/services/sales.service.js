@@ -9,7 +9,7 @@ const getSellerSales = async (token) => {
   const sales = await Sale.findAll({
     where: { sellerId: id },
   });
-  console.log(sales);
+  
   return sales;
 };
 
