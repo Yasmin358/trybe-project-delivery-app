@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import UserContext from '../context/UserContext';
 
 export default function RegisterForm() {
   const [input, setInput] = useState({ email: '', password: '', name: '' });
   const [invalid, setInvalid] = useState(false);
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const validFields = () => {
     const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
@@ -28,6 +30,7 @@ export default function RegisterForm() {
       .then((data) => {
         const stringfyData = JSON.stringify(data);
         localStorage.setItem('user', stringfyData);
+        setUser(data.name);
         navigate('/customer/products');
       })
       .catch(() => setInvalid(true));

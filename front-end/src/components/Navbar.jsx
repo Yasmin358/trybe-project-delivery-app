@@ -1,11 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 
 function Navbar() {
-  const { user } = useContext(UserContext);
+  const { user, getUser } = useContext(UserContext);
   const userName = [...user];
   const logOut = () => localStorage.removeItem('user');
+
+  useEffect(() => {
+    getUser();
+  }, [getUser]);
 
   return (
     <nav>
