@@ -1,11 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../context/UserContext';
 
 export default function Login() {
   const [input, setInput] = useState({ email: '', password: '' });
   const [invalidLogin, setInvalidLogin] = useState(false);
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const redirectObj = {
     customer: '/customer/products',
@@ -37,6 +39,7 @@ export default function Login() {
       .then((data) => {
         const stringfyData = JSON.stringify(data);
         localStorage.setItem('user', stringfyData);
+        setUser(data.name);
         navigate(redirectObj[data.role]);
       })
       .catch(() => setInvalidLogin(true));

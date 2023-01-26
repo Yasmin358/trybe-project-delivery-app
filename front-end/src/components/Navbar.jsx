@@ -4,6 +4,7 @@ import UserContext from '../context/UserContext';
 
 function Navbar() {
   const { user, getUser } = useContext(UserContext);
+  const userName = [...user];
   const logOut = () => localStorage.removeItem('user');
 
   useEffect(() => {
@@ -20,7 +21,7 @@ function Navbar() {
           Meus Pedidos
         </li>
         <li data-testid="customer_products__element-navbar-user-full-name">
-          { user }
+          { userName }
         </li>
         <li data-testid="customer_products__element-navbar-link-logout">
           <Link onClick={ () => logOut() } to="/login">Sair</Link>
