@@ -19,17 +19,14 @@ function ButtonCart() {
       <button
         data-testid="customer_products__button-cart"
         type="button"
-        disabled
+        disabled={ !productCart.length > 0 }
       >
         <Link
           data-testid="customer_products__checkout-bottom-value"
           to="/customer/checkout"
         >
-          {/* <p data-testid="customer_products__checkout-bottom-value"> */}
-          {/* {`Ver carrinho: R$${totalPrice()}`} */}
-          {/* Ver carrinho: R$ */}
+          { console.log(productCart) }
           {totalPrice()}
-          {/* </p> */}
         </Link>
       </button>
     </div>
