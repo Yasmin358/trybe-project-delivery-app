@@ -1,4 +1,5 @@
-import skolLata350ml from '../images/skol_lata_350ml_nova.jpeg';
+// import skolLata350ml from '../images/skol_lata_350ml_nova.jpeg';
+import skolLata350ml from '../images/skol_lata_350ml.jpg';
 import heineken600ml from '../images/heineken_600ml.jpg';
 import antarcticaPilsen300ml from '../images/antarctica_pilsen_300ml.jpg';
 import brahma600ml from '../images/brahma_600ml.jpg';

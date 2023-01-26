@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import UserContext from './UserContext';
 
 function UserProvider({ children }) {
+  const [user, setUser] = useState('X');
+
   const getUser = () => {
     const userKey = localStorage.getItem('user');
-    if (!userKey) {
-      const initialState = 'Cliente Zé Birita';
-      return initialState;
-    }
+    // if (!userKey) {
+    //   const initialState = 'Cliente Zé Birita';
+    //   return initialState;
+    // }
     const parseUserKey = JSON.parse(userKey);
     const userName = parseUserKey.name;
-    const initialState = userName;
-    return initialState;
+    setUser(userName);
+    // const initialState = userName;
+    // return initialState;
   };
 
   // const userKey = localStorage.getItem('user');
@@ -22,10 +25,10 @@ function UserProvider({ children }) {
   // console.log(userName);
   // const initialState = userName;
 
-  const [user, setUser] = useState(getUser);
+  // const [user, setUser] = useState(getUser);
 
   const context = useMemo(() => ({
-    user, setUser,
+    user, setUser, getUser,
   }), [user]);
 
   return (
