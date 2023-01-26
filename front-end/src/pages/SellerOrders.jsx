@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
-import Order from '../components/Order';
+import OrderCard from '../components/OrderCard';
 
 export default function SellerOrders() {
   const [sales, setSales] = useState([]);
@@ -27,15 +28,19 @@ export default function SellerOrders() {
       <div>
         {
           sales.map((sale, i) => (
-            <Order
+            <Link
               key={ i }
-              order={ sale }
-              status="seller_orders__element-delivery-status"
-              date="seller_orders__element-order-date"
-              price="seller_orders__element-card-price"
-              address="seller_orders__element-card-address"
-              delivery="seller_orders__element-order-id"
-            />
+              to={ `/seller/orders/${sale.id}` }
+            >
+              <OrderCard
+                order={ sale }
+                status="seller_orders__element-delivery-status"
+                date="seller_orders__element-order-date"
+                price="seller_orders__element-card-price"
+                address="seller_orders__element-card-address"
+                delivery="seller_orders__element-order-id"
+              />
+            </Link>
           ))
         }
       </div>
