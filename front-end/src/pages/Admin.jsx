@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
 
 export default function Admin() {
   const [input, setInput] = useState({
@@ -40,6 +41,7 @@ export default function Admin() {
 
   return (
     <div>
+      <Navbar />
       <h4>Cadastrar novos usuários</h4>
       <form onSubmit={ handleSubmit }>
         <label htmlFor="name">

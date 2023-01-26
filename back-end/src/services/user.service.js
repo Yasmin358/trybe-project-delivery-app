@@ -20,12 +20,8 @@ const login = async ({ email, password }) => {
   const token = jwt.create({
     id: result.id,
     email,
-    password: hashPassword,
     role: result.role,
   });
-  // const { name, role, id } = result;
-
-  // return { id, name, email, role, token };
   const { name, role } = result;
 
   return { name, email, role, token };

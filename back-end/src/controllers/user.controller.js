@@ -9,7 +9,7 @@ const login = async (req, res) => {
 
 const register = async (req, res) => {
   const { name, email, password, role } = req.body;
-  const newUser = await userService.customerRegister({ name, email, password, role });
+  const newUser = await userService.register({ name, email, password, role });
   return res.status(201).json(newUser);
 };
 
@@ -19,7 +19,7 @@ const admin = async (req, res) => {
 
   if (validation.role === 'administrator') {
     const { name, email, password, role } = req.body;
-    const newUser = await userService.customerRegister({ name, email, password, role });
+    const newUser = await userService.register({ name, email, password, role });
     
     return res.status(201).json(newUser);
   }
