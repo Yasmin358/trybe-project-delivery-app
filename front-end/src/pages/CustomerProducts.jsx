@@ -5,16 +5,9 @@ import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import ProductsContext from '../context/ProductsContext';
 import CartProvider from '../context/CartProvider';
-// import drinksMock from '../mocks/drinks';
 
 function CustomerProducts() {
   const { products, setProducts } = useContext(ProductsContext);
-
-  // useEffect(() => {
-  //   if (products.length === 0) {
-  //     getProducts();
-  //   }
-  // }, [products, getProducts]);
 
   useEffect(() => {
     axios.get('http://localhost:3001/products').then((response) => {
@@ -28,16 +21,6 @@ function CustomerProducts() {
     <CartProvider>
       <div>
         <Navbar />
-        {/* {drinksMock.map((drink) => (
-          <ProductCard
-            key={ drink.id }
-            id={ drink.id }
-            name={ drink.name }
-            price={ drink.price }
-            urlImage={ drink.urlImage }
-          />
-        ))} */}
-        { console.log(products) }
         { products.map((drink) => (
           <ProductCard
             key={ drink.id }
