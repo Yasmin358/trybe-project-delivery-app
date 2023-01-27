@@ -21,10 +21,16 @@ function Navbar() {
           Meus Pedidos
         </li>
         <li data-testid="customer_products__element-navbar-user-full-name">
-          { userName }
+          {userName}
         </li>
-        <li data-testid="customer_products__element-navbar-link-logout">
-          <Link onClick={ () => logOut() } to="/login">Sair</Link>
+        <li>
+          <Link
+            data-testid="customer_products__element-navbar-link-logout"
+            onClick={ () => logOut() }
+            to="/login"
+          >
+            Sair
+          </Link>
         </li>
       </ul>
     </nav>
