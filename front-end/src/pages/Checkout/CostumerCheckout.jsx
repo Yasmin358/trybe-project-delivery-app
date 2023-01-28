@@ -20,7 +20,7 @@ function Checkout() {
     <CartProvider>
       <section className="body">
         <Navbar />
-        <CartTable />
+        { !loading && <CartTable /> }
         <DetailsContainer />
       </section>
     </CartProvider>
