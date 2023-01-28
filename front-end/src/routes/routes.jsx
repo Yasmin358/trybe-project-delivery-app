@@ -7,6 +7,7 @@ import Admin from '../pages/Admin';
 import CustomerProducts from '../pages/CustomerProducts';
 import CustomerCheckout from '../pages/CustomerCheckout';
 import SellerDetails from '../pages/SellerDetails';
+import Orders from '../pages/Orders';
 
 function Router() {
   return (
@@ -17,6 +18,7 @@ function Router() {
         <Route exact path="/register" element={ <Register /> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
         <Route exact path="/seller/orders/:id" element={ <SellerDetails /> } />
+        <Route exact path="/customer/orders" element={ <Orders /> } />
         <Route exact path="/customer/products" element={ <CustomerProducts /> } />
         <Route exact path="/customer/checkout" element={ <CustomerCheckout /> } />
         <Route exact path="/admin/manage" element={ <Admin /> } />
