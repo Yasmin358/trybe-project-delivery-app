@@ -1,10 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './CartTable.css';
 import CartContext from '../../context/CartContext';
 
 function CartTable() {
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const getCart = JSON.parse(localStorage.getItem('cart'));
+    setCart(getCart);
+    setLoading(false);
+  }, [loading, setCart, setLoading]);
 
   function totalPrice() {
     const productCartSum = cart.reduce(
@@ -24,6 +31,9 @@ function CartTable() {
   return (
     <div className="cartContainer">
       <h2>Finalizar Pedido</h2>
+      {
+        !loading
+    && (
       <table className="cartTable">
         <thead>
           <tr>
@@ -90,9 +100,8 @@ function CartTable() {
             ))
           }
         </tbody>
-
-      </table>
-
+      </table>)
+      }
       <p>
         Total: R$
         <span
