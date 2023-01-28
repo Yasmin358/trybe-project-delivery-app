@@ -56,7 +56,10 @@ function DetailsContainer() {
           onChange={ handleChangeNumber }
         />
       </label>
-      <button type="button">
+      <button
+        type="button"
+        data-testid="customer_checkout__button-submit-order"
+      >
         Finalizar Pedido
       </button>
     </div>
