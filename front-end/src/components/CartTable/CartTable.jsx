@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './CartTable.css';
+import CartContext from '../../context/CartContext';
 
 function CartTable() {
   const { cart } = useContext(CartContext);

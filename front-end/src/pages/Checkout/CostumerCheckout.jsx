@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CartTable from '../../components/CartTable/CartTable';
 import './checkout.css';
 import Navbar from '../../components/Navbar';
