@@ -13,6 +13,15 @@ const getSellerSales = async (token) => {
   return sales;
 };
 
+const getCustomerOrders = async (id) => {
+  const orders = await Sale.findAll({
+    where: { userId: id },
+  });
+  
+  return orders;
+};
+
 module.exports = {
   getSellerSales,
+  getCustomerOrders,
 };

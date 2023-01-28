@@ -10,5 +10,4 @@ productsRoute.get('/products',
 productsRoute.get('/customer/products',
   rescue((req, res, _next) => productsController.getAllProducts(req, res)));
 
-
 module.exports = productsRoute;

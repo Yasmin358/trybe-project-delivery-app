@@ -4,7 +4,10 @@ const salesController = require('../controllers/sales.controller');
 
 const salesRoute = express.Router();
 
-salesRoute.post('/sales/orders',
+salesRoute.post('/sales/seller',
   rescue((req, res, _next) => salesController.getSellerSales(req, res)));
+
+salesRoute.post('/sales/customer',
+  rescue((req, res, _next) => salesController.getCustomerOrders(req, res)));
 
 module.exports = salesRoute;
