@@ -24,8 +24,8 @@ function CartTable() {
   const removeItem = (id) => {
     setLoading(true);
     const productCartRemovedItem = cart.filter((product) => product.id !== id);
-    const newArray = [...productCartRemovedItem];
     localStorage.setItem('cart', JSON.stringify(newArray));
+    setCart(productCartRemovedItem);
     setLoading(false);
   };
 
