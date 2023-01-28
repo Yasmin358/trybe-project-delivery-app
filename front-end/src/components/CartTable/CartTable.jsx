@@ -36,7 +36,7 @@ function CartTable() {
         </thead>
         <tbody>
           {
-            productCart.map((product, index) => (
+            cart.map((product, index) => (
               <tr key={ index }>
                 <td
                   data-testid={
