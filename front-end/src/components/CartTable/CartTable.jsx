@@ -1,78 +1,117 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './CartTable.css';
+import CartContext from '../../context/CartContext';
 
 function CartTable() {
-  const { cart } = useContext(CartContext);
-  const productCart = [...cart];
+  const { cart, setCart } = useContext(CartContext);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    const getCart = JSON.parse(localStorage.getItem('cart'));
+    setCart(getCart);
+    setLoading(false);
+  }, [loading, setCart, setLoading]);
+
+  function totalPrice() {
+    const productCartSum = cart.reduce(
+      (acc, curr) => Number((acc + curr.value).toFixed(2)),
+      0,
+    );
+    return productCartSum.toFixed(2).toString().replace('.', ',');
+  }
 
   const removeItem = (id) => {
-    const productCartRemovedItem = productCart.filter((product) => product.id !== id);
+    setLoading(true);
+    const productCartRemovedItem = cart.filter((product) => product.id !== id);
+    localStorage.setItem('cart', JSON.stringify(productCartRemovedItem));
     setCart(productCartRemovedItem);
+    setLoading(false);
   };
 
   return (
-    <table className="cartTable">
-      <thead>
-        <tr>
-          <th>Item</th>
-          <th>Descrição</th>
-          <th>Quantidade</th>
-          <th>Valor Unitário</th>
-          <th>Sub-Total</th>
-          <th>Remover</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          productCart.map((product) => (
-            <tr key={ product.id }>
-              <td
-                data-testid={ `customer_checkout__
-                element-order-table-item-number-${product.id}` }
-              >
-                {product.id}
-              </td>
-              <td
-                data-testid={ `customer_checkout__
-                element-order-table-name-${product.id}` }
-              >
-                {product.name}
-              </td>
-              <td
-                data-testid={ `customer_checkout__
-                element-order-table-quantity-${product.id}` }
-              >
-                {product.qty}
-              </td>
-              <td
-                data-testid={ `customer_checkout__
-                element-order-table-unit-price-${product.id}` }
-              >
-                {`R$ ${(product.value / 2).toFixed(2).replace(/\./, ',')}`}
-              </td>
-              <td
-                data-testid={ `customer_checkout__
-                element-order-table-sub-total-${product.id}` }
-              >
-                {`R$ ${product.value.toFixed(2).replace(/\./, ',')}`}
-              </td>
-              <td
-                data-testid={ `customer_checkout__
-                element-order-table-remove-${product.id}` }
-              >
-                <button
-                  type="button"
-                  onClick={ () => removeItem(product.id) }
+    <div className="cartContainer">
+      <h2>Finalizar Pedido</h2>
+      {
+        !loading
+    && (
+      <table className="cartTable">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor Unitário</th>
+            <th>Sub-Total</th>
+            <th>Remover</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            cart.map((product, index) => (
+              <tr key={ index }>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-item-number-${index}`
+                  }
                 >
-                  Remover
-                </button>
-              </td>
-            </tr>
-          ))
-        }
-      </tbody>
-
-    </table>
+                  {index + 1}
+                </td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-name-${index}`
+                  }
+                >
+                  {product.name}
+                </td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-quantity-${index}`
+                  }
+                >
+                  {product.qty}
+                </td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-unit-price-${index}`
+                  }
+                >
+                  {`R$ ${(product.value / product.qty).toFixed(2).replace(/\./, ',')}`}
+                </td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-sub-total-${index}`
+                  }
+                >
+                  {`R$ ${product.value.toFixed(2).replace(/\./, ',')}`}
+                </td>
+                <td
+                  data-testid={
+                    `customer_checkout__element-order-table-remove-${index}`
+                  }
+                >
+                  <button
+                    type="button"
+                    onClick={ () => removeItem(product.id) }
+                  >
+                    Remover
+                  </button>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>)
+      }
+      <p>
+        Total: R$
+        <span
+          data-testid="customer_checkout__element-order-total-price"
+        >
+          { !loading && `${totalPrice()}` }
+        </span>
+      </p>
+    </div>
   );
 }
 export default CartTable;

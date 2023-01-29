@@ -5,7 +5,7 @@ import Register from '../pages/Register';
 import SellerOrders from '../pages/SellerOrders';
 import Admin from '../pages/Admin';
 import CustomerProducts from '../pages/CustomerProducts';
-import CustomerCheckout from '../pages/CustomerCheckout';
+import CustomerCheckout from '../pages/Checkout/CostumerCheckout';
 import SellerDetails from '../pages/SellerDetails';
 
 function Router() {
