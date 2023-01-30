@@ -19,6 +19,7 @@ function Router() {
         <Route exact path="/seller/orders/:id" element={ <SellerDetails /> } />
         <Route exact path="/customer/products" element={ <CustomerProducts /> } />
         <Route exact path="/customer/checkout" element={ <CustomerCheckout /> } />
+        <Route exact path="/customer/orders/:id" element={ <p>teste</p> } />
         <Route exact path="/admin/manage" element={ <Admin /> } />
       </Routes>
     </main>

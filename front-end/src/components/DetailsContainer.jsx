@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import CartContext from '../context/CartContext';
 
 function DetailsContainer() {
   const [address, setAddress] = useState('');
   const [seller, setSeller] = useState('');
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState('');
+  const [sellers, setsellers] = useState([]);
+  const navigate = useNavigate();
+
+  const { cart } = useContext(CartContext);
 
   const handleChangeSeller = ({ target }) => {
     const { value } = target;
@@ -20,6 +27,31 @@ function DetailsContainer() {
     setNumber(value);
   };
 
+  const handleClick = () => {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+
+    axios.post(
+      'http://localhost:3001/sales/',
+      { address, number, seller, cart },
+      { headers: { authorization: token } },
+    )
+      .then((response) => response.data)
+      .then((data) => {
+        navigate(`/customer/orders/${[data.id]}`);
+      })
+      .catch((err) => console.log(err.message));
+  };
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/seller')
+      .then((response) => response.data)
+      .then((data) => {
+        setsellers(data);
+        setSeller(data[0].id);
+      })
+      .catch(() => setsellers([]));
+  }, []);
+
   return (
     <div className="detailsContainer">
       <h2>Detalhes e Endereço para Entrega</h2>
@@ -31,9 +63,11 @@ function DetailsContainer() {
           value={ seller }
           onChange={ handleChangeSeller }
         >
-          <option>Amanda</option>
-          <option>Dandara</option>
-          <option>Elena</option>
+          {
+            sellers.map(({ name, id }, i) => (
+              <option value={ id } key={ i }>{ name }</option>
+            ))
+          }
         </select>
       </label>
       <label htmlFor="inputAddress">
@@ -49,7 +83,7 @@ function DetailsContainer() {
       <label htmlFor="inputAddressNumber">
         Numero
         <input
-          type="number"
+          type="text"
           data-testid="customer_checkout__input-address-number"
           id="inputAddressNumber"
           value={ number }
@@ -59,6 +93,7 @@ function DetailsContainer() {
       <button
         type="button"
         data-testid="customer_checkout__button-submit-order"
+        onClick={ handleClick }
       >
         Finalizar Pedido
       </button>

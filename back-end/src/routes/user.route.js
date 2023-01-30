@@ -13,4 +13,7 @@ userRoute.post('/register',
 userRoute.post('/admin/register', rescue((req, res, _next) =>
   userController.admin(req, res)));
 
+userRoute.get('/seller',
+  rescue((req, res, _next) => userController.getSellers(req, res)));
+
 module.exports = userRoute;
