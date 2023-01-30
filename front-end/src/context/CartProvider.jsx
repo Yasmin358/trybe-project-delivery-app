@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import CartContext from './CartContext';
 
@@ -10,6 +10,10 @@ function CartProvider({ children }) {
   const context = useMemo(() => ({
     cart, setCart,
   }), [cart, setCart]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <CartContext.Provider value={ context }>
