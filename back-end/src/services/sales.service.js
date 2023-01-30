@@ -13,14 +13,17 @@ const getSellerSales = async (token) => {
   return sales;
 };
 
-const createSale = async ({ address, number, seller, cart, token }) => {
-  const productCartSum = cart.reduce(
+const sum = (cart) => (
+  cart.reduce(
     (acc, curr) => Number((acc + curr.value).toFixed(2)),
     0,
-  );
+  )
+);
+
+const createSale = async ({ address, number, seller, cart, token }) => {
+  const productCartSum = sum(cart);
 
   const { id } = validate(token);
-
   const { dataValues } = await Sale.create({
     userId: id,
     sellerId: seller,
@@ -29,16 +32,12 @@ const createSale = async ({ address, number, seller, cart, token }) => {
     deliveryNumber: number,
     status: 'Pendente',
   });
-
-  const saleProduct = cart.map( async ({ id, qty }) => {
-    return await SalesProduct.create({
+  const saleProduct = cart.map(async (product) => SalesProduct.create({
       saleId: dataValues.id,
-      productId: id,
-      quantity: qty,
-    });
-  })
+      productId: product.id,
+      quantity: product.qty,
+    }));
   Promise.all(saleProduct);
-  
   return dataValues;
 };
 
