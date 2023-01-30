@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import CartContext from '../context/CartContext';
 
 function DetailsContainer() {
   const [address, setAddress] = useState('');
   const [seller, setSeller] = useState('');
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState('');
   const [sellers, setsellers] = useState([]);
+  const navigate = useNavigate();
 
   const { cart } = useContext(CartContext);
 
@@ -25,12 +28,18 @@ function DetailsContainer() {
   };
 
   const handleClick = () => {
-    axios.post('http://localhost:3001/sales/', { address, seller, number, cart })
+    const { token } = JSON.parse(localStorage.getItem('user'));
+
+    axios.post(
+      'http://localhost:3001/sales/',
+      { address, number, seller, cart },
+      { headers: { authorization: token } },
+    )
       .then((response) => response.data)
       .then((data) => {
-        navigate(redirectObj[data.id]);
+        navigate(`/customer/orders/${[data.id]}`);
       })
-      .catch(() => console.log('deu ruim'));
+      .catch((err) => console.log(err.message));
   };
 
   useEffect(() => {
@@ -38,9 +47,10 @@ function DetailsContainer() {
       .then((response) => response.data)
       .then((data) => {
         setsellers(data);
+        setSeller(data[0].id);
       })
       .catch(() => setsellers([]));
-  });
+  }, []);
 
   return (
     <div className="detailsContainer">
@@ -73,7 +83,7 @@ function DetailsContainer() {
       <label htmlFor="inputAddressNumber">
         Numero
         <input
-          type="number"
+          type="text"
           data-testid="customer_checkout__input-address-number"
           id="inputAddressNumber"
           value={ number }
