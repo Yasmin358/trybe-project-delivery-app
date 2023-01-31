@@ -7,13 +7,13 @@ function CartProvider({ children }) {
 
   const [cart, setCart] = useState(initialState);
 
-  useEffect(() => {
-    localStorage.setItem('cart', cart);
-  }, [cart]);
-
   const context = useMemo(() => ({
     cart, setCart,
-  }), [cart]);
+  }), [cart, setCart]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <CartContext.Provider value={ context }>

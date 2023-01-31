@@ -10,4 +10,7 @@ salesRoute.post('/sales/seller',
 salesRoute.post('/sales/customer',
   rescue((req, res, _next) => salesController.getCustomerOrders(req, res)));
 
+salesRoute.post('/sales',
+  rescue((req, res, _next) => salesController.createSale(req, res)));
+
 module.exports = salesRoute;

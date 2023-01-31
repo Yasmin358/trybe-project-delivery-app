@@ -27,8 +27,14 @@ const admin = async (req, res) => {
   return res.status(401).json({ message: 'Unauthorized' });
 };
 
+const getSellers = async (_req, res) => {
+  const sellers = await userService.getSellers();
+  return res.status(200).json(sellers);
+};
+
 module.exports = {
   login,
   register,
   admin,
+  getSellers,
 };

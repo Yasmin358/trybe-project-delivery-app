@@ -84,7 +84,7 @@ function ProductCard(props) {
           data-testid={ `customer_products__button-card-add-item-${id}` }
           type="button"
           onClick={ () => {
-            setCount(count + 1);
+            setCount(Number(count) + 1);
             addToCart(1, 'increment');
           } }
         >

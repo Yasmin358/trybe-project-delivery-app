@@ -14,6 +14,10 @@ function ButtonCart() {
     return productCartSum.toFixed(2).toString().replace('.', ',');
   };
 
+  const saveCart = () => {
+    localStorage.setItem('cart', JSON.stringify(productCart));
+  };
+
   return (
     <div>
       <button
@@ -24,6 +28,7 @@ function ButtonCart() {
         <Link
           data-testid="customer_products__checkout-bottom-value"
           to="/customer/checkout"
+          onClick={ saveCart }
         >
           { console.log(productCart) }
           {totalPrice()}
