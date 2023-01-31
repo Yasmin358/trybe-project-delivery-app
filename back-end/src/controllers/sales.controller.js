@@ -6,6 +6,12 @@ const getSellerSales = async (req, res) => {
   return res.status(200).json(sales);
 };
 
+const getCustomerOrders = async (req, res) => {
+  const { token } = req.body;
+  const orders = await salesService.getCustomerOrders(token);
+  return res.status(200).json(orders);
+};
+
 const createSale = async (req, res) => {
   const token = req.headers.authorization;
   const { address, number, seller, cart } = req.body;
@@ -16,5 +22,6 @@ const createSale = async (req, res) => {
 
 module.exports = {
   getSellerSales,
+  getCustomerOrders,
   createSale,
 };

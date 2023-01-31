@@ -13,6 +13,15 @@ const getSellerSales = async (token) => {
   return sales;
 };
 
+const getCustomerOrders = async (token) => {
+  const { id } = validate(token);
+
+  const orders = await Sale.findAll({
+    where: { userId: id },
+  });
+  return orders;
+};
+
 const sum = (cart) => (
   cart.reduce(
     (acc, curr) => Number((acc + curr.value).toFixed(2)),
@@ -43,5 +52,6 @@ const createSale = async ({ address, number, seller, cart, token }) => {
 
 module.exports = {
   getSellerSales,
+  getCustomerOrders,
   createSale,
 };
