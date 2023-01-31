@@ -9,7 +9,6 @@ import CustomerCheckout from '../pages/Checkout/CostumerCheckout';
 import SellerDetails from '../pages/SellerDetails';
 import Orders from '../pages/Orders';
 import OrderDetails from '../pages/OrderDetails';
-import Navbar from '../components/Navbar';
 
 function Router() {
   return (
@@ -24,7 +23,6 @@ function Router() {
         <Route exact path="/customer/orders/:id" element={ <OrderDetails /> } />
         <Route exact path="/customer/products" element={ <CustomerProducts /> } />
         <Route exact path="/customer/checkout" element={ <CustomerCheckout /> } />
-        <Route exact path="/customer/orders/:id" element={ <Navbar /> } />
         <Route exact path="/admin/manage" element={ <Admin /> } />
       </Routes>
     </main>

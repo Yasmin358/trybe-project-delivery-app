@@ -13,7 +13,7 @@ export default function OrderDetails() {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/sales/${id}`)
+    axios.get('http://localhost:3001/sales/')
       .then((result) => result.data)
       .then((data) => {
         setOrder(data);
@@ -52,8 +52,8 @@ export default function OrderDetails() {
   return (
     <div>
       <NavBar />
-      <main className={ styles.mainContainer }>
-        <div className={ styles.statusContainer }>
+      <main>
+        <div>
           <h4 data-testid="customer_order_details__element-order-details-label-order-id">
             { `Pedido ${orderId}` }
           </h4>
@@ -79,15 +79,13 @@ export default function OrderDetails() {
           </button>
         </div>
         <h3>Detalhes do Pedido</h3>
-        <div className={ styles.tableContainer }>
+        <div>
           {products.length > 0 && (
             <DetailsTable
               allProducts={ products }
             />
           )}
-          <h4
-            className={ styles.total }
-          >
+          <h4>
             { `Total: R$ ${total}` }
           </h4>
         </div>
