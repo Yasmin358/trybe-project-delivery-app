@@ -7,8 +7,8 @@ const getSellerSales = async (req, res) => {
 };
 
 const getCustomerOrders = async (req, res) => {
-  const { id } = req.body;
-  const orders = await salesService.getCustomerOrders(id);
+  const { token } = req.body;
+  const orders = await salesService.getCustomerOrders(token);
   return res.status(200).json(orders);
 };
 

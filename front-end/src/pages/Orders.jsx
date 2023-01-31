@@ -7,9 +7,10 @@ import OrderCard from '../components/OrderCard';
 export default function Orders() {
   const [orders, setOrders] = useState([]);
 
-  const getOrders = async () => {
-    const { id } = JSON.parse(localStorage.getItem('user'));
-    await axios.get('http://localhost:3001/sales/customer', { id })
+  const getOrders = () => {
+    const { token } = JSON.parse(localStorage.getItem('user'));
+    console.log(token);
+    axios.post('http://localhost:3001/sales/customer/', { token })
       .then((result) => result.data)
       .then((data) => setOrders([...data]))
       .catch((err) => {
@@ -40,7 +41,7 @@ export default function Orders() {
             />
           </Link>
         ))
-        : <h1 className={ styles.title }>Não perca tempo, faça seu pedido!</h1>}
+        : <h1>Não perca tempo, faça seu pedido!</h1>}
 
     </div>
   );

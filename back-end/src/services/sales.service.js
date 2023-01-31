@@ -13,11 +13,12 @@ const getSellerSales = async (token) => {
   return sales;
 };
 
-const getCustomerOrders = async (id) => {
+const getCustomerOrders = async (token) => {
+  const { id } = validate(token);
+
   const orders = await Sale.findAll({
     where: { userId: id },
   });
-  
   return orders;
 };
 
