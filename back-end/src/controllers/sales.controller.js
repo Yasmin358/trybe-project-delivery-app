@@ -6,6 +6,13 @@ const getSellerSales = async (req, res) => {
   return res.status(200).json(sales);
 };
 
+const getCustomerOrders = async (req, res) => {
+  const { id } = req.body;
+  const orders = await salesService.getCustomerOrders(id);
+  return res.status(200).json(orders);
+};
+
 module.exports = {
   getSellerSales,
+  getCustomerOrders,
 };

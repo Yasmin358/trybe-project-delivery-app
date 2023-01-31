@@ -11,12 +11,15 @@ export default function SellerOrders() {
     const getList = () => {
       const { token } = JSON.parse(localStorage.getItem('user'));
 
-      axios.post('http://localhost:3001/sales/orders/', { token })
+      axios.post('http://localhost:3001/sales/seller/', { token })
         .then((response) => response.data)
         .then((data) => {
           setSales(data);
         })
-        .catch(() => console.log('deu errado'));
+        .catch((err) => {
+          setSales([]);
+          console.log(err);
+        });
     };
     getList();
     console.log(JSON.parse(localStorage.getItem('user')).name);
