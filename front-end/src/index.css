@@ -1,13 +1,55 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+  font-family: Poppins , sans-serif;
+
+  --color1: #d82227;
+
+  --color2: #e66065;
+
+  --color3: #202533;
+
+  --color4: #4f5a79;
+
+  --color5: #dde4ea;
+
+  --color6: hsla(208, 24%, 89%, 0.4);
+
+  --textLight: white;
+
+  --textDark: var(--color3);
+
+  --shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.primary-button:enabled {
+  background-color: var(--color1);
+}
+
+.primary-button:disabled {
+  background-color: var(--color2);
+}
+
+.primary-button:enabled, .primary-button:disabled {
+  border: none;
+  color: var(--textLight);
+}
+
+.primary-button:disabled, .primary-button:enabled, .secundary-button {
+  border-radius: 5px;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  font-weight: 600;
+  height: 40px;
+  margin: 5px;
+  margin-top: 10px;
+  text-shadow: var(--shadow);
+}
+
+.secundary-button {
+  background-color: var(--textLight);
+  border: 2px solid var(--color1);
+  color: var(--color1);
+}
+
+body {
+  margin: 0;
 }

@@ -38,43 +38,45 @@ export default function RegisterForm() {
   };
 
   return (
-    <>
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="name">
-          Nome
-          <input
-            type="text"
-            name="name"
-            data-testid="common_register__input-name"
-            onChange={ handleInput }
-          />
-        </label>
-        <label htmlFor="email">
-          Email
-          <input
-            type="email"
-            name="email"
-            data-testid="common_register__input-email"
-            onChange={ handleInput }
-          />
-        </label>
-        <label htmlFor="password">
-          Senha
-          <input
-            type="password"
-            name="password"
-            data-testid="common_register__input-password"
-            onChange={ handleInput }
-          />
-        </label>
-        <button
-          type="submit"
-          data-testid="common_register__button-register"
-          disabled={ !validFields() }
-        >
-          CADASTRAR
-        </button>
-      </form>
+    <form onSubmit={ handleSubmit } className="form-container">
+      <label htmlFor="name" className="label-register">
+        <span className="text">Nome</span>
+        <input
+          type="text"
+          name="name"
+          data-testid="common_register__input-name"
+          onChange={ handleInput }
+          className="input-register"
+        />
+      </label>
+      <label htmlFor="email" className="label-register">
+        <span className="text">Email</span>
+        <input
+          type="email"
+          name="email"
+          data-testid="common_register__input-email"
+          onChange={ handleInput }
+          className="input-register"
+        />
+      </label>
+      <label htmlFor="password" className="label-register">
+        <span className="text">Senha</span>
+        <input
+          type="password"
+          name="password"
+          data-testid="common_register__input-password"
+          onChange={ handleInput }
+          className="input-register"
+        />
+      </label>
+      <button
+        type="submit"
+        data-testid="common_register__button-register"
+        disabled={ !validFields() }
+        className="primary-button"
+      >
+        CADASTRAR
+      </button>
       {
         invalid
           && (
@@ -83,6 +85,6 @@ export default function RegisterForm() {
             </p>
           )
       }
-    </>
+    </form>
   );
 }
