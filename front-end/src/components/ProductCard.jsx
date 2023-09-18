@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import CartContext from '../context/CartContext';
+import '../styles/productCard.css';
 
 function ProductCard(props) {
   const { id, name, price, urlImage } = props;
@@ -41,7 +42,7 @@ function ProductCard(props) {
   };
 
   return (
-    <section>
+    <section className="card-container">
       <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
       <p data-testid={ `customer_products__element-card-price-${id}` }>
         {price.toString().replace('.', ',')}

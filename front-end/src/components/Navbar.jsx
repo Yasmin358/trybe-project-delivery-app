@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../context/UserContext';
+import '../styles/navbar.css';
 
 function Navbar() {
   const { user, getUser } = useContext(UserContext);
@@ -12,7 +13,7 @@ function Navbar() {
   }, [getUser]);
 
   return (
-    <nav>
+    <nav className="nav-container">
       <ul>
         <li data-testid="customer_products__element-navbar-link-products">
           Produtos
