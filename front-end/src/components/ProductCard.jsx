@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import CartContext from '../context/CartContext';
-import '../styles/productCard.css';
 
 function ProductCard(props) {
   const { id, name, price, urlImage } = props;
@@ -42,57 +41,61 @@ function ProductCard(props) {
   };
 
   return (
-    <section className="card-container">
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
-      <p data-testid={ `customer_products__element-card-price-${id}` }>
-        {price.toString().replace('.', ',')}
-      </p>
-      <img
-        data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ urlImage }
-        width="250px"
-        alt="Bebida"
-      />
-      <div>
-        <button
-          data-testid={ `customer_products__button-card-rm-item-${id}` }
-          type="button"
-          onClick={ () => {
-            if (count > 0) {
-              setCount(count - 1);
-              removeFromCart(1, 'decrement');
-            }
-          } }
-        >
-          -
-        </button>
-        <input
-          data-testid={ `customer_products__input-card-quantity-${id}` }
-          type="number"
-          name="inputCardQuantity"
-          id="inputCardQuantity"
-          min="0"
-          value={ (count).toString().replace(/ˆ0+/, '') }
-          onBlur={ () => setCount(productItem ? productItem.qty : '0') }
-          onClick={ () => setCount('') }
-          onChange={ ({ target: { value } }) => {
-            setCount(Number(value));
-            if (Number(value) <= 0) return removeFromCart(Number(value), 'decrement');
-            return addToCart(Number(value), '');
-          } }
+    <article className="card-product">
+      <figure className="image-container">
+        <img
+          data-testid={ `customer_products__img-card-bg-image-${id}` }
+          src={ urlImage }
+          alt="Bebida"
         />
-        <button
-          data-testid={ `customer_products__button-card-add-item-${id}` }
-          type="button"
-          onClick={ () => {
-            setCount(Number(count) + 1);
-            addToCart(1, 'increment');
-          } }
-        >
-          +
-        </button>
+      </figure>
+      <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
+
+      <div className="price-container">
+        <p data-testid={ `customer_products__element-card-price-${id}` }>
+          {price.toString().replace('.', ',')}
+        </p>
+        <div className="counter-container">
+          <button
+            data-testid={ `customer_products__button-card-rm-item-${id}` }
+            type="button"
+            onClick={ () => {
+              if (count > 0) {
+                setCount(count - 1);
+                removeFromCart(1, 'decrement');
+              }
+            } }
+          >
+            -
+          </button>
+          <input
+            data-testid={ `customer_products__input-card-quantity-${id}` }
+            type="number"
+            name="inputCardQuantity"
+            id="inputCardQuantity"
+            min="0"
+            value={ (count).toString().replace(/ˆ0+/, '') }
+            onBlur={ () => setCount(productItem ? productItem.qty : '0') }
+            onClick={ () => setCount('') }
+            onChange={ ({ target: { value } }) => {
+              setCount(Number(value));
+              if (Number(value) <= 0) return removeFromCart(Number(value), 'decrement');
+              return addToCart(Number(value), '');
+            } }
+          />
+          <button
+            data-testid={ `customer_products__button-card-add-item-${id}` }
+            type="button"
+            onClick={ () => {
+              setCount(Number(count) + 1);
+              addToCart(1, 'increment');
+            } }
+          >
+            +
+          </button>
+        </div>
       </div>
-    </section>
+    </article>
   );
 }
 

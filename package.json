@@ -55,5 +55,8 @@
       "__TESTDESC__": true,
       "__TESTFILE__": true
     }
+  },
+  "dependencies": {
+    "wait-on": "^7.2.0"
   }
 }

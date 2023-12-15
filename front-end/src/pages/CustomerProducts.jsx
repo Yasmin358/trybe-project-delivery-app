@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import ProductsContext from '../context/ProductsContext';
 import CartProvider from '../context/CartProvider';
+import '../styles/products.css';
 
 function CustomerProducts() {
   const { products, setProducts } = useContext(ProductsContext);
@@ -21,15 +22,17 @@ function CustomerProducts() {
     <CartProvider>
       <div>
         <Navbar />
-        { products.map((drink) => (
-          <ProductCard
-            key={ drink.id }
-            id={ drink.id }
-            name={ drink.name }
-            price={ drink.price }
-            urlImage={ drink.urlImage }
-          />
-        ))}
+        <section className="products-container">
+          { products.map((drink) => (
+            <ProductCard
+              key={ drink.id }
+              id={ drink.id }
+              name={ drink.name }
+              price={ drink.price }
+              urlImage={ drink.urlImage }
+            />
+          ))}
+        </section>
         <ButtonCart />
       </div>
     </CartProvider>
