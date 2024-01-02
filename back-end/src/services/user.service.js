@@ -14,7 +14,8 @@ const login = async ({ email, password }) => {
   if (!result) throw new CustomError(404, 'User not found');
 
   const hashPassword = md5(password);
-
+  console.log(hashPassword);
+  console.log(result.password);
   if (result.password !== hashPassword) throw new CustomError(400, 'Invalid password');
 
   const token = jwt.create({
