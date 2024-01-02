@@ -11,7 +11,7 @@ function CustomerProducts() {
   const { products, setProducts } = useContext(ProductsContext);
 
   useEffect(() => {
-    axios.get('/products').then((response) => {
+    axios.get('https://delivery-app-production.up.railway.app/products').then((response) => {
       setProducts(response.data);
     });
   }, [setProducts]);
