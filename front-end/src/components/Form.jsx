@@ -34,7 +34,7 @@ export default function Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:3001/login/', input)
+    axios.post('/login/', input)
       .then((response) => response.data)
       .then((data) => {
         console.log(data);
