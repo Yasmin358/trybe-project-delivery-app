@@ -37,6 +37,7 @@ export default function Form() {
     axios.post('http://localhost:3001/login/', input)
       .then((response) => response.data)
       .then((data) => {
+        console.log(data);
         const stringfyData = JSON.stringify(data);
         localStorage.setItem('user', stringfyData);
         setUser(data.name);
