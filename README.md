@@ -30,6 +30,7 @@ Vendedora
 - Fazer Login <br/>
 - Visualizar pedidos dos cliente <br/>
 - Aprovar pedidos <br/>
+
 Administrador
 - Cadastrar novos usuários <br/>
 
@@ -37,6 +38,7 @@ Administrador
   • Terminar CSS de todo o site <br/>
   • Refatorar Codigos <br/>
   • Finaliar Requisitos: 40, 41, 42, 43, 44 <br/>
+  • Fazer Demostração <br/>
 
 
 <h3 id="demostração"> 🔭 Demostração </h3>
@@ -89,77 +91,56 @@ Administrador
   Membros: <a href="https://www.linkedin.com/in/yasminamorins/">Yasmin Amorin</a> , <a href="https://www.linkedin.com/in/tiagoribeirodebarros/">Tiago de Barros</a>, <a href="https://www.linkedin.com/in/viniciusbfdev/">Vinícius Barbosa</a>, <a href="https://www.linkedin.com/in/brenusaraujo/">Breno Araújo</a>
   
   <h3>Requisitos do projeto: </h3>
-  <br/><strong></strong> <br/>
-  1. <br/>
-  2. <br/>
-  3. <br/>
-  4. <br/>
-  5. <br/>
-  6. <br/>
-  <br/><strong></strong> <br /> 
-  7. <br/>
-  8. <br/>
-  9. <br/>
-  <br/><strong></strong> <br /> 
-  10. <br/>
-  11. <br/>
-  12. <br/>
-  13. <br />
-  14. <br/>
-  15. <br/>
-  <br/> <strong></strong> <br/> 
-  16. <br/>
-  17. <br/>
-  18. <br/>
-  <br/><strong></strong> <br/> 
-  19. <br/>
-  20. <br/>
-  21. <br/>
-  22. <br/>
-  23. <br/>
-  <br/><strong></strong> <br/> 
-  24. <br/>
-  25. <br/>
-  26. <br/>
-  27. <br/>
-  28. <br/>
-  29. <br/>
-  30. <br/>
-  31. <br/>
-  32. <br/>
-  33. <br/>
-  34. <br/>
-  35. <br/>
-  36. <br/>
-  <br/><strong></strong> <br/> 
-  37. <br/>
-  38. <br/>
-  39. <br/>
-  40. <br/>
-  41. <br/>
-  42. <br/>
-  43. <br/>
-  <br/><strong></strong> <br/>
-  44. <br/>
-  45. <br/>
-  46. <br/>
-  47. <br/>
-  48. <br/>
-  49. <br/>
-  <br/><strong></strong> <br/>
-  50. <br/>
-  51. <br/>
-  52. <br/>
-  53. <br/>
-  54. <br/>
-  55. <br/>
-  56. <br/>
-  <br/><strong></strong> <br/>
-  57. <br/>
-  58. <br/>
-  59. <br/>
-  60. <br/>
-  61. <br/>
-  62. <br/>
+  <br/><strong>Fluxo Comum</strong> <br/>
+  1. Crie uma tela de login que deve ser acessível pelos endpoints / e /login no navegador ✔️ <br/>
+  2. Crie os elementos da tela de login com os data-testids disponíveis no protótipo ✔️ <br/>
+  3. Desenvolva a tela de login de maneira que ela impossibilite o login com dados mal formatados ✔️ <br/>
+  4. Desenvolva a tela de login de maneira que ela impossibilite o login com dados inexistentes no banco de dados ✔️ <br/>
+  5. Desenvolva a tela de login de maneira que ela possibilite fazer o login com dados válidos e existentes no banco de dados ✔️ <br/>
+  6. Crie uma tela de registro que deve ser acessível via endpoint /register no navegador e pelo botão de registro na tela de login ✔️ <br/>
+  7. Crie os elementos da tela de registro com os data-testids disponíveis no protótipo ✔️ <br/>
+  8. Desenvolva a tela de registro de maneira que ela impossibilite o cadastro com dados mal formatados ✔️<br/>
+  9. Desenvolva a tela de registro de maneira que ela possibilite cadastrar com dados válidos ✔️<br/>
+  10. Desenvolva a tela de registro de maneira que ela impossibilite o cadastro de um usuário já existente ✔️<br/>
+  <br/> <strong>Fluxo do Cliente</strong> <br/>
+  11. Crie uma tela de produtos do cliente contendo uma barra de navegação - navbar - que servirá também para demais telas das pessoas usuárias ✔️<br/> 
+  12. Desenvolva a tela de produtos do cliente criando os demais elementos com os data-testids disponíveis no protótipo ✔️
+  <br/> 
+  13. Desenvolva a tela de produtos do cliente de forma que ela pressuponha dados válidos da pessoa usuária armazenados no localStorage ✔️<br/>
+  14. Desenvolva a tela de produtos do cliente de forma que os cards de todos os produtos pré-cadastrados contenham os valores corretos ✔️<br/>
+  15. Desenvolva a tela de produtos do cliente de forma que o preço total esteja correto após a adição de itens aleatórios ✔️<br/>
+  16. Desenvolva a tela de produtos do cliente de forma que haja um botão de carrinho que redirecionará para a tela de checkout caso itens sejam adicionados ✔️<br/>
+  17. Crie uma tela de checkout do cliente com elementos com os data-testids disponíveis no protótipo ✔️<br/>
+  18. Desenvolva a tela de checkout do cliente de forma a possuir os dados corretos do carrinho e preço total ✔️<br/>
+  19. Desenvolva a tela de checkout do cliente de forma que seja possível remover itens do carrinho ✔️<br/>
+  20. Desenvolva a tela de checkout do cliente de forma a nos redirecionar para a tela de detalhes do pedido após a finalização do mesmo ✔️<br/>
+  21. Desenvolva a tela de checkout do cliente de forma a gerar uma nova venda na tabela sales, assim como relações em sales_products, ao finalizar o pedido ✔️<br/>
+  22. Crie uma tela de pedidos do cliente com elementos a partir dos data-testids disponíveis no protótipo ✔️<br/>
+  23. Desenvolva a tela de pedidos do cliente de forma a conter a lista de pedidos do mesmo com os dados corretos ✔️<br/>
+  24. Desenvolva a tela de pedidos do cliente de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo ✔️<br/>
+  25. Crie uma tela de detalhes do pedido do cliente com elementos a partir dos data-testids disponíveis no protótipo ✔️<br/>
+  26. Desenvolva a tela de detalhes do pedido do cliente de forma a possuir os dados corretos da venda ✔️<br/>
+  <br/><strong>Fluxo da Pessoa Vendedora</strong><br/> 
+  27. Crie uma tela de pedidos da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo ✔️<br/>
+  28. Desenvolva a tela de pedidos da pessoa vendedora de forma a conter a lista de pedidos do mesmo com os dados corretos ✔️<br/>
+  29. Desenvolva a tela de pedidos da pessoa vendedora de forma a dar acesso à tela de detalhes de um pedido ao clicar no card do mesmo ✔️<br/>
+  30. Crie uma tela de detalhes do pedido da pessoa vendedora com elementos a partir dos data-testids disponíveis no protótipo ✔️<br/>
+  31. Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a possuir os dados corretos da venda ✔️<br/>
+  <br/><strong>Validação do Status do Pedido</strong> <br/> 
+  32. Desenvolva a tela de detalhes do pedido da pessoa vendedora de forma a ser capaz de alterar o status do pedido ✔️<br/>
+  33. Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de detalhes do pedido do cliente após atualização das páginas ✔️<br/>
+  34. Garanta que o status do pedido atualizado na tela de detalhes do pedido da pessoa vendedora seja refletido na tela de lista de pedidos do cliente após atualização das páginas ✔️<br/>
+  35. Garanta que o status do pedido atualizado na tela de detalhes do pedido do cliente seja refletido na tela de lista de pedidos da pessoa vendedora após atualização das páginas ✔️<br/>
+  <br/><strong>Fluxo da Pessoa Administradora</strong> <br/>
+  36. Crie uma tela de pessoa administradora com elementos a partir dos data-testids disponíveis no protótipo ✔️<br/>
+  37. Desenvolva a tela da pessoa administradora de forma a validar o formulário de cadastro ✔️<br/>
+  38. Desenvolva a tela da pessoa administradora de forma que seja possível cadastrar pessoas usuárias válidas ✔️<br/>
+  39. Desenvolva a tela da pessoa administradora de forma que ela impossibilite o cadastro de pessoas usuárias já existentes ✔️<br/>
+  40. Desenvolva a tela da pessoa administradora de forma que haja uma tabela de pessoas usuárias cadastradas ✖️<br/>
+  41. Desenvolva a tela da pessoa administradora de forma que seja possível deletar pessoas usuárias na tabela ✖️<br/>
+  <br/><strong>Cobertura de Testes</strong> <br/>
+  42. Crie testes que cubram no mínimo 30 por cento dos arquivos do front-end e back-end em src com um mínimo de 75 linhas cobertas em cada ✖️<br/>
+  43. Crie testes que cubram no mínimo 60 por cento dos arquivos do front-end e back-end em src com um mínimo de 150 linhas cobertas em cada ✖️<br/>
+  44. Crie testes que cubram no mínimo 90 por cento dos arquivos do front-end e back-end em src com um mínimo de 225 linhas cobertas em cada ✖️<br/>
     
 
