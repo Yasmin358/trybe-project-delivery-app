@@ -17,7 +17,7 @@
 </p>
 
 <h3 id="funcionalidades"> 🔨 Funcionalidades </h3>
-Cliente
+Cliente <br/>
 - Fazer Cadastro <br/>
 - Fazer Login <br/>
 - Visualizar produtos <br/>
@@ -25,8 +25,8 @@ Cliente
 - Retirar produtos do carrinho <br/>
 - Fazer pedido <br/>
 - Acessar aos pedidos feitos <br/>
-
-Vendedora
+<br/>
+Vendedora <br/>
 - Fazer Login <br/>
 - Visualizar pedidos dos cliente <br/>
 - Aprovar pedidos <br/>
