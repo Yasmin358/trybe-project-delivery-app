@@ -13,7 +13,7 @@
   <a href="#demostração">Demostração</a> •
   <a href="#tecnologias-habilidades">Tecnologias e Habilidades</a> •
   <a href="#acesso-ao-projeto">Acesso ao projeto</a> •
-  <a href="#creditos">Creditos</a> •
+  <a href="#creditos">Creditos</a>
 </p>
 
 <h3 id="funcionalidades"> 🔨 Funcionalidades </h3>
@@ -30,8 +30,8 @@ Vendedora <br/>
 - Fazer Login <br/>
 - Visualizar pedidos dos cliente <br/>
 - Aprovar pedidos <br/>
-
-Administrador
+<br/>
+Administrador <br/>
 - Cadastrar novos usuários <br/>
 
 <h3 id="atualizações"> Futuras Atualizações </h3>
