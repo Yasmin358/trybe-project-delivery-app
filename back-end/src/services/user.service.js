@@ -10,7 +10,7 @@ const login = async ({ email, password }) => {
   const result = await User.findOne({
     where: { email },
   });
-
+   console.log(result);
   if (!result) throw new CustomError(404, 'User not found');
 
   const hashPassword = md5(password);

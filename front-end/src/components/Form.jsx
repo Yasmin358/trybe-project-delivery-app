@@ -34,7 +34,7 @@ export default function Form() {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    axios.post('https://delivery-app-production.up.railway.app/login', input)
+    axios.post('http://localhost:3001/login/', input)
       .then((response) => response.data)
       .then((data) => {
         console.log(data);

@@ -13,6 +13,8 @@
 
   --color6: hsla(208, 24%, 89%, 0.4);
 
+  --color7: #3c404c;
+
   --textLight: white;
 
   --textDark: var(--color3);

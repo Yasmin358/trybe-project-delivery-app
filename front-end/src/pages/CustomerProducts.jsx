@@ -5,13 +5,13 @@ import Navbar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import ProductsContext from '../context/ProductsContext';
 import CartProvider from '../context/CartProvider';
-import '../styles/products.css';
+import '../styles/page-products.css';
 
 function CustomerProducts() {
   const { products, setProducts } = useContext(ProductsContext);
 
   useEffect(() => {
-    axios.get('https://delivery-app-production.up.railway.app/products').then((response) => {
+    axios.get('http://localhost:3001/products').then((response) => {
       setProducts(response.data);
     });
   }, [setProducts]);
@@ -30,6 +30,7 @@ function CustomerProducts() {
               name={ drink.name }
               price={ drink.price }
               urlImage={ drink.urlImage }
+              itenCart={ false }
             />
           ))}
         </section>

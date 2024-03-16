@@ -81,7 +81,7 @@ Administrador
     $ npm install
 
     # Rode o projeto 
-    $ npm start
+    $ npm run dev: prestart
 
     # Ou abra no seu editor de texto favorito. 
 

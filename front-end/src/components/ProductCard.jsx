@@ -1,47 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import CartContext from '../context/CartContext';
+import '../styles/products.css';
+import CountContainer from './CountContainer';
+import trash from '../images/trash.png';
 
 function ProductCard(props) {
-  const { id, name, price, urlImage } = props;
-  const [count, setCount] = useState(0);
-  const { cart, setCart } = useContext(CartContext);
-  const productCart = [...cart];
-  const productItem = productCart.find((product) => product.id === id);
-  const productCartRemovedItem = productCart.filter(
-    (product) => product.id !== id,
-  );
-  const unitPrice = parseFloat(price);
-
-  const addToCart = (itemQty, increment) => {
-    if (!productItem) {
-      productCart.push({ id, name, qty: itemQty, value: (parseFloat(price) * itemQty) });
-    } else {
-      productItem.qty = increment === 'increment' ? productItem.qty + itemQty : itemQty;
-      productItem.value = increment === 'increment'
-        ? productItem.value + unitPrice : (itemQty * unitPrice);
-    }
-    setCart(productCart);
-    return productCart;
-  };
-
-  const removeFromCart = (itemQty, decrement) => {
-    if (productItem && productItem.qty === 1) {
-      setCart(productCartRemovedItem);
-      return productCartRemovedItem;
-    }
-
-    if (productItem && productItem.qty > 0) {
-      productItem.qty = decrement === 'decrement' ? productItem.qty - itemQty : itemQty;
-      productItem.value = decrement === 'decrement'
-        ? productItem.value - unitPrice : (itemQty * unitPrice);
-      setCart(productCart);
-      return productCart;
-    }
-  };
+  const { id, name, price, urlImage, itenCart } = props;
 
   return (
-    <article className="card-product">
+    <article className={ itenCart ? 'iten-cart' : 'card-product' }>
       <figure className="image-container">
         <img
           data-testid={ `customer_products__img-card-bg-image-${id}` }
@@ -49,52 +16,32 @@ function ProductCard(props) {
           alt="Bebida"
         />
       </figure>
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
+      <p
+        className="description"
+        data-testid={ `customer_products__element-card-title-${id}` }
+      >
+        {name}
+      </p>
 
       <div className="price-container">
         <p data-testid={ `customer_products__element-card-price-${id}` }>
+          R$
           {price.toString().replace('.', ',')}
         </p>
-        <div className="counter-container">
-          <button
-            data-testid={ `customer_products__button-card-rm-item-${id}` }
-            type="button"
-            onClick={ () => {
-              if (count > 0) {
-                setCount(count - 1);
-                removeFromCart(1, 'decrement');
-              }
-            } }
-          >
-            -
-          </button>
-          <input
-            data-testid={ `customer_products__input-card-quantity-${id}` }
-            type="number"
-            name="inputCardQuantity"
-            id="inputCardQuantity"
-            min="0"
-            value={ (count).toString().replace(/ˆ0+/, '') }
-            onBlur={ () => setCount(productItem ? productItem.qty : '0') }
-            onClick={ () => setCount('') }
-            onChange={ ({ target: { value } }) => {
-              setCount(Number(value));
-              if (Number(value) <= 0) return removeFromCart(Number(value), 'decrement');
-              return addToCart(Number(value), '');
-            } }
-          />
-          <button
-            data-testid={ `customer_products__button-card-add-item-${id}` }
-            type="button"
-            onClick={ () => {
-              setCount(Number(count) + 1);
-              addToCart(1, 'increment');
-            } }
-          >
-            +
-          </button>
-        </div>
+        <CountContainer
+          id={ id }
+          name={ name }
+          price={ price }
+          urlImage={ urlImage }
+          itenCart={ itenCart }
+        />
       </div>
+      {
+        itenCart ? (
+          <button className="buttonExcluir" type="button">
+            <img src={ trash } alt="excluir" />
+          </button>) : ''
+      }
     </article>
   );
 }

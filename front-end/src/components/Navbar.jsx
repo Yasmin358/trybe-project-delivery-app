@@ -3,17 +3,30 @@ import { Link } from 'react-router-dom';
 import UserContext from '../context/UserContext';
 import '../styles/navbar.css';
 import userIcon from '../images/person.png';
-import cart from '../images/bag.png';
+import cartIcon from '../images/bag.png';
+import ProductCard from './ProductCard';
+import CartContext from '../context/CartContext';
 
 function Navbar() {
   const { user, getUser } = useContext(UserContext);
+  const { cart } = useContext(CartContext);
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const [isCartExpanded, setIsCartExpanded] = useState(false);
   const userName = [...user];
   const logOut = () => localStorage.removeItem('user');
 
   useEffect(() => {
     getUser();
   }, [getUser]);
+
+  const expandeCart = () => {
+    setIsCartExpanded(!isCartExpanded);
+  };
+
+  const getCartList = () => {
+    const list = [...cart];
+    return list;
+  };
 
   return (
     <header className="header-container">
@@ -37,8 +50,9 @@ function Navbar() {
         <button
           type="button"
           className="cart-btn"
+          onClick={ expandeCart }
         >
-          <img src={ cart } alt="cart-icon" />
+          <img src={ cartIcon } alt="cart-icon" />
         </button>
         <button
           type="button"
@@ -48,6 +62,23 @@ function Navbar() {
           <img src={ userIcon } alt="user-icon" />
         </button>
       </nav>
+      <ul
+        className={
+          isCartExpanded ? 'cart-container expanded' : 'cart-container'
+        }
+      >
+
+        { getCartList().length === 0 ? (<li>Carinho Vazio</li>)
+          : getCartList().map((drink) => (
+            <ProductCard
+              key={ drink.id }
+              id={ drink.id }
+              name={ drink.name }
+              price={ drink.value }
+              urlImage={ drink.urlImage }
+              itenCart
+            />))}
+      </ul>
       <ul
         className={
           isNavExpanded ? 'menu-container expanded' : 'menu-container'
